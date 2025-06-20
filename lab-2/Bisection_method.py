@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # def f(x):
 #     # return np.exp(x)-np.sin(x)-9
 
-eqn = input("Enter the equationin x using python syntax:")
+eqn = input("Enter the equation in x using python syntax:")
 
 def F(x,eqn):
     return eval(eqn)
@@ -43,7 +43,7 @@ while(itr<=n):
     
     if f(a)*f(c)<0:
         b = c
-        
+
     else:
         a = c
 
@@ -59,13 +59,13 @@ if itr>n:
     print(f"Solution doesn't converge is {n} iterations.")
 
 x = np.linspace(-5,5,1000)
-plt.plot(x,f(x),color='r',label="transendental curve")
+plt.plot(x,f(x),color='r',label=eqn)
 plt.axhline(0,0,color='g')
 plt.axvline(0,0,color='g')
 plt.grid(True)
 plt.xlabel('x')
 plt.ylabel('y')
-plt.title("Bisection Method")
+plt.title(" Bisection-Method")
 plt.legend()
 plt.scatter(mid, [f(c) for c in mid])
 
@@ -122,7 +122,7 @@ plt.show()
 # plt.grid(True)
 # plt.xlabel('x')
 # plt.ylabel('y')
-# plt.title("Bisection Method")
+# plt.title("Regula-Falsi Method")
 # plt.legend()
 # # plt.scatter(mid,f(mid)) //doesn't work for lists if equation is user defined
 # plt.scatter(mid, [f(c) for c in mid])
