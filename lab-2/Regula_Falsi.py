@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
+import sys
 import matplotlib.pyplot as plt
 
 
-eqn = input("Enter the equationin x using python syntax:")
+eqn = input("Enter the equation in x using python syntax:")
 
 def F(x,eqn):
     return eval(eqn)
@@ -32,6 +33,10 @@ c_list = []
 
 while(itr<=n):
 
+    if(f(a)==f(b)):
+        print("Division by zero occured, program exited")
+        sys.exit()
+
     c = (a*f(b)-b*f(a))/(f(b)-f(a))
 
     err = abs(f(c))
@@ -56,13 +61,13 @@ if itr>n:
     print(f"Solution doesn't converge is {n} iterations.")
 
 x = np.linspace(-5,5,1000)
-plt.plot(x,f(x),color='r',label="transendental curve")
+plt.plot(x,f(x),color='r',label=eqn)
 plt.axhline(0,0,color='g')
 plt.axvline(0,0,color='g')
 plt.grid(True)
 plt.xlabel('x')
 plt.ylabel('y')
-plt.title("Bisection Method")
+plt.title("Regula-Falsi Method")
 plt.legend()
 plt.scatter(c_list, [f(c) for c in c_list])
 
