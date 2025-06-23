@@ -6,10 +6,12 @@ A=[]
 B=[]
 
 for i in range(n):
-    A.append(list(map(float,input(f'Enter {i+1} row {n}*{n+1} matrix'))))
+    A.append(list(map(float,input(f'Enter {i+1} row in given matrix:').split())))
+    
 
 for i in range(n):
-    B.append(list(map(float,input(f'Enter {i+1} row {n}*{n+1} matrix'))))
+    B.append(list(map(float,input(f'Enter {i+1} row in given matrix:').split())))
+    
 
 P,L,U =lu(A)
 lum = lu_factor(A)
@@ -19,5 +21,5 @@ print(f'Upper triangular matrix :\n{U}')
 print(f'Permutation matrix is :\n {P}')
 
 x= lu_solve(lum,B)
-print(f'Solution : {x}')
+print(f'Solution : {np.round(x,6)}')
 

@@ -20,9 +20,6 @@ for i in range (n):
         if j!=i:
             A[j] = A[j] - A[i]*(A[j,i])
 
-print('The upper triangular matrix is : ')
-print(np.matrix(A))
-
 print("The normal matrix is :")
 print(np.matrix(A))
 x=A[:,-1]

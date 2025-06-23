@@ -25,7 +25,7 @@ print(np.matrix(A))
 x = np.zeros(n)
 
 for i in range(n-1,-1,-1):
-    x[i] = (A[i,-1]-np.sum(A[i,i+1:n]*x[i+1:n]))
+    x[i] = (A[i,-1]-np.sum(A[i,i+1:n]*x[i+1:n]))/A[i,i]
 
 print('\n The solution is : ')
 for i in range(n):

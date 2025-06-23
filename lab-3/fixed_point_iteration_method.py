@@ -1,37 +1,59 @@
 import numpy as np
-import sys 
 import pandas as pd
+import sys
 import matplotlib.pyplot as plt
 
-# eqn=input("Enter the equation in x using python syntax: ")
+# Input for rearranged function g(x)
+gx = input("Enter the rearranged equation g(x) in python syntax: ")
 
-# def F(x,eqn):
-#     return eval(eqn)
+# Define g(x)
+def G(x, gx):
+    return eval(gx)
 
-def f(x):
-    return np.sqrt(4*x + 10) 
+def g(x):
+    return G(x, gx)
 
-a = float(input("Enter your approximation: "))
-e= float(input("Enter the tolerable error: "))
-n=int(input("Enter the maximum number of iterations: "))
+# Input initial approximation
+a = float(input("Enter your initial approximation: "))
+
+# Input tolerable error and max iterations
+e = float(input("Enter tolerable error: "))
+n = int(input("Enter the maximum number of iterations: "))
+
 itr = 1
+lst = []
+a_list = [a]
 
-while itr<=n:
+while itr <= n:
+    b = g(a)
+    err = abs(b - a)
+    lst.append([itr, a, b, err])
+    a_list.append(b)
 
-    x = f(a)
-    err = abs(a-x)
-
-    if err<e:
-        print(f"Approximate root is {x} in {itr} iterations.")
+    if err < e:
+        lst = pd.DataFrame(lst, columns=['Iteration', 'X_n', 'X_n+1', 'Error']).to_string(index=False)
+        print(lst)
+        print(f"Approximate root is {b} in {itr} iteration.")
         break
-    
-    a = x
-    itr+=1
 
-if itr>n:
+    a = b
+    itr += 1
+
+if itr > n:
     print(f"Solution doesn't converge in {n} iterations.")
 
+# Plotting
+x = np.linspace(-5, 5, 1000)
+plt.plot(x, g(x), label='g(x)', color='orange')
+plt.plot(x, x, label='y = x', linestyle='--', color='blue')
+plt.grid(True)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title("Fixed Point Iteration")
+plt.legend()
+plt.scatter(a_list, [g(val) for val in a_list], color='red')
 
+for i, val in enumerate(a_list):
+    plt.text(val, g(val), f'{i+1}')
 
-
-
+plt.show()
